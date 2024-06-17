@@ -37,11 +37,12 @@
 //=====================create server=====================================
 // Importing the express module and creating an instance of it
 const express = require('express');
+require('dotenv').config();
 const app = express();
 
 // Importing the database module
 const db = require('./db');
-
+const PORT = process.env.PORT || 3000
 // Importing the body-parser module to parse JSON requests
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -70,4 +71,6 @@ app.use('/Menu', MenuRoutes);
 
 
 // Starting the server and listening on port 3000
-app.listen(3000);
+app.listen(PORT,()=>{
+    console.log(`Server is running on port ${PORT}`);
+});
